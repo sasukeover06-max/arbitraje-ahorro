@@ -1,0 +1,13 @@
+{
+  "name": "Arbitraje & Ahorro",
+  "short_name": "Arbitraje",
+  "description": "Control de capital, operaciones, saldos y ganancias de arbitraje.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0b172a",
+  "categories": ["finance", "productivity"]
+}
