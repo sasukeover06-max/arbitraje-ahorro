@@ -1,472 +1,603 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b172a">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="mobile-web-app-capable" content="yes">
-<title>Arbitraje & Ahorro</title>
-<link rel="manifest" href="./manifest.json">
 
-<style>
-:root{
-  --bg:#f4f7fb;
-  --card:#fff;
-  --ink:#122033;
-  --muted:#708096;
-  --navy:#0b172a;
-  --green:#15966a;
-  --red:#d64d55;
-  --line:#e3e9f1;
-  --blue:#3678e8;
-  --shadow:0 10px 30px #10213a12
-}
+<html lang="es">  
+<head>  
+<meta charset="utf-8">  
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">  
+<meta name="theme-color" content="#0b172a">  
+<meta name="apple-mobile-web-app-capable" content="yes">  
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">  
+<meta name="mobile-web-app-capable" content="yes">  
+<title>Arbitraje & Ahorro</title>  
+<link rel="manifest" href="./manifest.json">  
+<style>  
+:root{--bg:#f4f7fb;--card:#fff;--ink:#122033;--muted:#708096;--navy:#0b172a;--green:#15966a;--red:#d64d55;--line:#e3e9f1;--blue:#3678e8;--shadow:0 10px 30px #10213a12}  
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:88px}  
+header{background:linear-gradient(145deg,#0b172a,#172b49);color:white;padding:20px 18px 22px;border-radius:0 0 28px 28px;box-shadow:var(--shadow)}  
+.headrow{display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:21px}.sub{color:#b8c7da;font-size:12px;margin-top:4px}  
+.iconbtn{border:1px solid #ffffff22;background:#ffffff12;color:white;border-radius:12px;padding:9px 11px}  
+main{max-width:760px;margin:auto;padding:16px}  
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:var(--shadow)}  
+.label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em}.big{font-size:24px;font-weight:850;margin-top:8px}.green{color:var(--green)}.red{color:var(--red)}  
+.section{margin-top:18px;font-size:14px;font-weight:850}.wide{grid-column:1/-1}  
+.progress{height:10px;background:#e8eef6;border-radius:99px;overflow:hidden;margin-top:12px}.bar{height:100%;background:linear-gradient(90deg,#2f78e8,#19a974);width:0}  
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}.small{font-size:12px;color:var(--muted)}  
+.platform{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}.platform:last-child{border-bottom:0}  
+nav{position:fixed;z-index:10;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;gap:5px;padding:9px max(10px,env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom))}  
+nav button{flex:1;max-width:150px;border:0;background:transparent;color:var(--muted);font-weight:750;padding:9px 5px;border-radius:12px}nav button.active{background:#eaf1ff;color:var(--blue)}  
+.view{display:none}.view.active{display:block}  
+button.primary{width:100%;background:var(--navy);color:#fff;border:0;border-radius:13px;padding:13px;font-weight:800}button.secondary{background:#eef3fa;color:var(--ink);border:0;border-radius:11px;padding:10px;font-weight:700}  
+button.savebtn{width:100%;background:#15966a;color:#fff;border:0;border-radius:13px;padding:13px;font-weight:800}  
+form{display:grid;gap:11px}label{font-size:12px;font-weight:750;color:#4e5e72}input,select,textarea{width:100%;padding:12px;border:1px solid #d7e0eb;border-radius:11px;background:#fff;font:inherit;color:var(--ink)}textarea{min-height:70px}  
+.notice{padding:12px;border-radius:12px;background:#eef5ff;color:#31577f;font-size:12px}.danger{background:#fff0f0;color:#9e3038}  
+table{width:100%;border-collapse:collapse;font-size:12px}th{background:var(--navy);color:white;text-align:left;padding:9px}td{padding:9px;border-bottom:1px solid var(--line);white-space:nowrap}.scroll{overflow:auto}  
+.badge{padding:4px 7px;border-radius:99px;font-size:10px;font-weight:800}.bg{background:#e8f7f0;color:#127a55}.br{background:#fdebed;color:#a32d36}  
+.empty{text-align:center;color:var(--muted);padding:20px;font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1;min-width:120px}  
+.divider{height:1px;background:var(--line);margin:18px 0}  
+@media(max-width:420px){main{padding:12px}.grid{gap:9px}.card{padding:13px}.big{font-size:21px}}  
+</style>  
+</head>  
+<body>  
+<header>  
+  <div class="headrow"><div><div class="brand">💰 Arbitraje & Ahorro</div><div class="sub">Tu fondo de ahorro, operación por operación</div></div><button class="iconbtn" onclick="installApp()" id="installBtn">📱 Instalar</button></div>  
+</header>  
+
+<main>  
+
+<section id="inicio" class="view active">  
+  <div class="grid" style="margin-top:4px">  
+    <div class="card"><div class="label">Capital actual</div><div class="big" id="capital">$40</div></div>  
+    <div class="card"><div class="label">Ganancia acumulada</div><div class="big green" id="profit">$0</div></div>  
+    <div class="card"><div class="label">Rentabilidad</div><div class="big" id="roi">0,00%</div></div>  
+    <div class="card"><div class="label">Operaciones</div><div class="big" id="ops">0</div></div>  
+    <div class="card wide">  
+      <div class="row"><div><div class="label">Próxima meta</div><div class="big" id="goal">$50.000</div></div><div class="big green" id="goalPct">80%</div></div>  
+      <div class="progress"><div class="bar" id="bar"></div></div>  
+      <div class="row small" style="margin-top:8px"><span id="goalLeft">Faltan $10.000</span><span id="goalText">En proceso</span></div>  
+    </div>  
+  </div>  
+
+  <div class="section">💳 Dinero por plataforma</div>  
+  <div class="card" id="platforms"></div>  
+
+  <div class="section">📈 Evolución del ahorro</div>  
+  <div class="card"><canvas id="chart" height="190"></canvas></div>  
+
+  <div class="section">🔄 Últimas operaciones</div>  
+  <div class="card" id="recent"></div>  
+</section>  
+
+<section id="operacion" class="view">  
+  <div class="section">Nueva operación</div>  
+  <div class="card">  
+    <form id="opForm">  
+      <div class="grid">  
+        <div><label>Fecha</label><input id="date" type="date" required></div>  
+        <div><label>Origen</label><select id="from" required></select></div>  
+        <div><label>Destino</label><select id="to" required></select></div>  
+        <div><label>Sale</label><input id="sale" type="number" min="0" step="1" placeholder="10000" required></div>  
+        <div><label>Costo / comisión</label><input id="fee" type="number" min="0" step="1" value="0"></div>  
+        <div><label>Llega</label><input id="arrive" type="number" min="0" step="1" placeholder="10300" required></div>  
+      </div>  
+
+      <div class="notice" id="preview">Completa los valores para ver la ganancia.</div>  
+      <textarea id="note" placeholder="Nota opcional"></textarea>  
+      <button class="primary" type="submit">Registrar operación</button>  
+    </form>  
+  </div>  
+
+  <div class="divider"></div>  
+
+  <div class="section">💰 Agregar ahorro</div>  
+  <div class="card">  
+    <form id="saveForm">  
+      <div>  
+        <label>Fecha</label>  
+        <input id="saveDate" type="date" required>  
+      </div>  
+
+      <div>  
+        <label>¿Dónde entra el dinero?</label>  
+        <select id="savePlatform" required></select>  
+      </div>  
 
-*{box-sizing:border-box}
+      <div>  
+        <label>Monto del ahorro</label>  
+        <input id="saveAmount" type="number" min="1" step="1" placeholder="10000" required>  
+      </div>  
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  padding-bottom:88px
-}
+      <textarea id="saveNote" placeholder="Nota opcional"></textarea>  
 
-header{
-  background:linear-gradient(145deg,#0b172a,#172b49);
-  color:white;
-  padding:20px 18px 22px;
-  border-radius:0 0 28px 28px;
-  box-shadow:var(--shadow)
-}
+      <div class="notice">  
+        Este dinero aumenta tu capital, pero <b>no se considera ganancia</b>.  
+      </div>  
 
-.headrow{
-  display:flex;
-  align-items:center;
-  justify-content:space-between
-}
-
-.brand{
-  font-weight:800;
-  font-size:21px
-}
-
-.sub{
-  color:#b8c7da;
-  font-size:12px;
-  margin-top:4px
-}
-
-.iconbtn{
-  border:1px solid #ffffff22;
-  background:#ffffff12;
-  color:white;
-  border-radius:12px;
-  padding:9px 11px
-}
-
-main{
-  max-width:760px;
-  margin:auto;
-  padding:16px
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:15px;
-  box-shadow:var(--shadow)
-}
-
-.label{
-  font-size:11px;
-  color:var(--muted);
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.04em
-}
-
-.big{
-  font-size:24px;
-  font-weight:850;
-  margin-top:8px
-}
-
-.green{color:var(--green)}
-.red{color:var(--red)}
-
-.section{
-  margin-top:18px;
-  font-size:14px;
-  font-weight:850
-}
-
-.wide{
-  grid-column:1/-1
-}
-
-.progress{
-  height:10px;
-  background:#e8eef6;
-  border-radius:99px;
-  overflow:hidden;
-  margin-top:12px
-}
-
-.bar{
-  height:100%;
-  background:linear-gradient(90deg,#2f78e8,#19a974);
-  width:0
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:center
-}
-
-.small{
-  font-size:12px;
-  color:var(--muted)
-}
-
-.platform{
-  display:flex;
-  justify-content:space-between;
-  padding:10px 0;
-  border-bottom:1px solid var(--line)
-}
-
-.platform:last-child{
-  border-bottom:0
-}
-
-nav{
-  position:fixed;
-  z-index:10;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#fff;
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:center;
-  gap:5px;
-  padding:9px max(10px,env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom))
-}
-
-nav button{
-  flex:1;
-  max-width:150px;
-  border:0;
-  background:transparent;
-  color:var(--muted);
-  font-weight:750;
-  padding:9px 5px;
-  border-radius:12px
-}
-
-nav button.active{
-  background:#eaf1ff;
-  color:var(--blue)
-}
-
-.view{display:none}
-.view.active{display:block}
-
-button.primary{
-  width:100%;
-  background:var(--navy);
-  color:#fff;
-  border:0;
-  border-radius:13px;
-  padding:13px;
-  font-weight:800
-}
-
-button.secondary{
-  background:#eef3fa;
-  color:var(--ink);
-  border:0;
-  border-radius:11px;
-  padding:10px;
-  font-weight:700
-}
-
-button.savebtn{
-  width:100%;
-  background:#15966a;
-  color:#fff;
-  border:0;
-  border-radius:13px;
-  padding:13px;
-  font-weight:800
-}
-
-form{
-  display:grid;
-  gap:11px
-}
-
-label{
-  font-size:12px;
-  font-weight:750;
-  color:#4e5e72
-}
-
-input,select,textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #d7e0eb;
-  border-radius:11px;
-  background:#fff;
-  font:inherit;
-  color:var(--ink)
-}
-
-textarea{
-  min-height:70px
-}
-
-.notice{
-  padding:12px;
-  border-radius:12px;
-  background:#eef5ff;
-  color:#31577f;
-  font-size:12px
-}
-
-.danger{
-  background:#fff0f0;
-  color:#9e3038
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:12px
-}
-
-th{
-  background:var(--navy);
-  color:white;
-  text-align:left;
-  padding:9px
-}
-
-td{
-  padding:9px;
-  border-bottom:1px solid var(--line);
-  white-space:nowrap
-}
-
-.scroll{
-  overflow:auto
-}
-
-.badge{
-  padding:4px 7px;
-  border-radius:99px;
-  font-size:10px;
-  font-weight:800
-}
-
-.bg{
-  background:#e8f7f0;
-  color:#127a55
-}
-
-.br{
-  background:#fdebed;
-  color:#a32d36
-}
-
-.empty{
-  text-align:center;
-  color:var(--muted);
-  padding:20px;
-  font-size:13px
-}
-
-.actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap
-}
-
-.actions button{
-  flex:1;
-  min-width:120px
-}
-
-.divider{
-  height:1px;
-  background:var(--line);
-  margin:18px 0
-}
-
-@media(max-width:420px){
-  main{padding:12px}
-  .grid{gap:9px}
-  .card{padding:13px}
-  .big{font-size:21px}
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <div class="headrow">
-    <div>
-      <div class="brand">💰 Arbitraje & Ahorro</div>
-      <div class="sub">Control de capital y ganancias · USD</div>
-    </div>
-
-    <button class="iconbtn" onclick="installApp()" id="installBtn">
-      📱 Instalar
-    </button>
-  </div>
-</header>
-
-<main>
-
-<section id="inicio" class="view active">
-
-  <div class="grid" style="margin-top:4px">
-
-    <div class="card">
-      <div class="label">Capital actual</div>
-      <div class="big" id="capital">$40.00</div>
-    </div>
-
-    <div class="card">
-      <div class="label">Ganancia acumulada</div>
-      <div class="big green" id="profit">$0.00</div>
-    </div>
-
-    <div class="card">
-      <div class="label">Rentabilidad</div>
-      <div class="big" id="roi">0,00%</div>
-    </div>
-
-    <div class="card">
-      <div class="label">Operaciones</div>
-      <div class="big" id="ops">0</div>
-    </div>
-
-    <div class="card wide">
-
-      <div class="row">
-
-        <div>
-          <div class="label">Próxima meta</div>
-          <div class="big" id="goal">$50.00</div>
-        </div>
-
-        <div class="big green" id="goalPct">80%</div>
-
-      </div>
-
-      <div class="progress">
-        <div class="bar" id="bar"></div>
-      </div>
-
-      <div class="row small" style="margin-top:8px">
-        <span id="goalLeft">Faltan $10.00</span>
-        <span id="goalText">En proceso</span>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="section">💳 Dinero por plataforma</div>
-  <div class="card" id="platforms"></div>
-
-  <div class="section">📈 Evolución del ahorro</div>
-  <div class="card">
-    <canvas id="chart" height="190"></canvas>
-  </div>
-
-  <div class="section">🔄 Últimas operaciones</div>
-  <div class="card" id="recent"></div>
-
-</section>
-
-
-<section id="operacion" class="view">
-
-  <div class="section">Nueva operación</div>
-
-  <div class="card">
-
-    <form id="opForm">
-
-      <div class="grid">
-
-        <div>
-          <label>Fecha</label>
-          <input id="date" type="date" required>
-        </div>
-
-        <div>
-          <label>Origen</label>
-          <select id="from" required></select>
-        </div>
-
-        <div>
-          <label>Destino</label>
-          <select id="to" required></select>
-        </div>
-
-        <div>
-          <label>Sale (USD)</label>
-          <input id="sale" type="number" min="0" step="0.01" placeholder="10.00" required>
-        </div>
-
-        <div>
-          <label>Costo / comisión (USD)</label>
-          <input id="fee" type="number" min="0" step="0.01" value="0.00">
-        </div>
-
-        <div>
-          <label>Llega (USD)</label>
-          <input id="arrive" type="number" min="0" step="0.01" placeholder="10.30" required>
-        </div>
-
-      </div>
-
-      <div class="notice">
-        Todos los montos de esta aplicación están expresados en <b>USD</b>.
-      </div>
-
-      <div class="notice" id="preview">
-        Completa los valores para ver la ganancia.
-      </div>
-
-      <textarea id="note" placeholder="Nota opcional"></textarea>
-
-      <button class="primary" type="submit">
-        Registrar operación
-      </button>
-
+      <button class="savebtn" type="submit">💰 Agregar al ahorro</button>  
     </form>
+  </div>  
 
-  </div>
+  <div class="card" style="margin-top:12px">
+    <div class="label">Importante</div>
+    <div class="small" style="margin-top:6px">La operación mueve automáticamente el dinero del origen al destino. La ganancia queda incluida en tu capital total.</div>
+  </div>  
+</section>  
 
+<section id="saldos" class="view">  
+  <div class="section">💳 Saldos</div>  
+  <div class="card" id="balanceList"></div>  
 
-  <div class="divider"></div>
+  <div class="section">Verificación manual</div>  
+  <div class="card">  
+    <div class="small">Puedes introducir el saldo real que ves en cada plataforma para detectar diferencias.</div>  
+    <div id="verify"></div>  
+  </div>  
+</section>  
 
+<section id="historial" class="view">  
+  <div class="section">📋 Historial</div>  
 
- 
+  <div class="card">  
+    <div class="actions">
+      <button class="secondary" onclick="exportJSON()">Exportar respaldo</button>
+      <button class="secondary" onclick="document.getElementById('importFile').click()">Importar respaldo</button>
+      <input hidden id="importFile" type="file" accept=".json" onchange="importJSON(event)">
+    </div>  
+  </div>  
+
+  <div class="card" style="margin-top:12px">
+    <div class="scroll" id="history"></div>
+  </div>  
+</section>  
+
+</main>  
+
+<nav>  
+<button class="active" onclick="show('inicio',this)">🏠 Inicio</button>  
+<button onclick="show('operacion',this)">➕ Operar</button>  
+<button onclick="show('saldos',this)">💳 Saldos</button>  
+<button onclick="show('historial',this)">📋 Historial</button>  
+</nav>  
+
+<script>  
+
+const PLAT=["OKX","AirTM","Zinli","Wally"];  
+
+const KEY="arbitraje_ahorro_v1";  
+
+let state=JSON.parse(localStorage.getItem(KEY)||"null")||{  
+  initial:40,  
+  balances:{OKX:40,AirTM:0,Zinli:0,Wally:0},  
+  ops:[],  
+  real:{}  
+};  
+
+let deferredPrompt=null;  
+
+window.addEventListener("beforeinstallprompt",e=>{  
+  e.preventDefault();  
+  deferredPrompt=e;  
+  document.getElementById("installBtn").textContent="📱 Instalar";  
+});  
+
+window.addEventListener("appinstalled",()=>{  
+  deferredPrompt=null;  
+  document.getElementById("installBtn").textContent="✅ Instalada";  
+});  
+
+const $=id=>document.getElementById(id);  
+
+const fmt=n=>new Intl.NumberFormat("en-US",{  
+  style:"currency",  
+  currency:"USD",  
+  minimumFractionDigits:2,  
+  maximumFractionDigits:2  
+}).format(Number(n)||0);  
+
+const pct=n=>(n*100).toLocaleString("es-CL",{  
+  minimumFractionDigits:2,  
+  maximumFractionDigits:2  
+})+"%";  
+
+function save(){  
+  localStorage.setItem(KEY,JSON.stringify(state));  
+}  
+
+function profit(){  
+  return state.ops  
+    .filter(o=>o.type!=="aporte")  
+    .reduce((a,o)=>a+(Number(o.gain)||0),0);  
+}  
+
+function capital(){  
+  return Object.values(state.balances).reduce((a,b)=>a+(Number(b)||0),0);  
+}  
+
+function nextGoal(){  
+  let goals=[50,75,100,150,200,300,500,1000];  
+  return goals.find(x=>x>capital())||1000;  
+}  
+
+function show(id,btn){  
+  document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));  
+  $(id).classList.add("active");  
+  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));  
+  btn.classList.add("active");  
+  render();  
+}  
+
+function setup(){  
+  PLAT.forEach(p=>{  
+    ["from","to"].forEach(id=>{  
+      $(id).insertAdjacentHTML("beforeend",`<option>${p}</option>`);  
+    });  
+
+    $("savePlatform").insertAdjacentHTML("beforeend",`<option>${p}</option>`);  
+  });  
+
+  let today=new Date().toISOString().slice(0,10);  
+
+  $("date").value=today;  
+  $("saveDate").value=today;  
+
+  ["sale","fee","arrive"].forEach(id=>{  
+    $(id).addEventListener("input",preview);  
+  });  
+
+  $("opForm").addEventListener("submit",addOp);  
+  $("saveForm").addEventListener("submit",addSaving);  
+
+  render();  
+}  
+
+function preview(){  
+  let s=+$("sale").value||0;  
+  let f=+$("fee").value||0;  
+  let a=+$("arrive").value||0;  
+  let g=a-s-f;  
+  let el=$("preview");  
+
+  if(!s&&!a){  
+    el.textContent="Completa los valores para ver la ganancia.";  
+    return;  
+  }  
+
+  el.innerHTML=`Ganancia: <b class="${g>=0?"green":"red"}">${fmt(g)}</b> &nbsp; Rentabilidad: <b>${pct(g/(s+f||1))}</b>`;  
+}  
+
+function addOp(e){  
+  e.preventDefault();  
+
+  let from=$("from").value;  
+  let to=$("to").value;  
+  let s=+$("sale").value;  
+  let f=+$("fee").value||0;  
+  let a=+$("arrive").value;  
+  let g=a-s-f;  
+
+  if(from===to)
+    return alert("El origen y destino deben ser diferentes.");  
+
+  if(s<=0||a<0)
+    return;  
+
+  if((state.balances[from]||0)<s+f)
+    return alert(`Saldo insuficiente en ${from}. Saldo calculado: ${fmt(state.balances[from])}`);  
+
+  state.balances[from]-=s+f;  
+  state.balances[to]=(state.balances[to]||0)+a;  
+
+  state.ops.push({  
+    id:Date.now(),  
+    type:"operacion",  
+    date:$("date").value,  
+    from,  
+    to,  
+    sale:s,  
+    fee:f,  
+    arrive:a,  
+    gain:g,  
+    roi:g/(s+f||1),  
+    note:$("note").value  
+  });  
+
+  save();  
+
+  e.target.reset();  
+  $("date").value=new Date().toISOString().slice(0,10);  
+  $("fee").value=0;  
+
+  alert("Operación registrada.");  
+
+  show("inicio",document.querySelector("nav button"));  
+}  
+
+function addSaving(e){  
+  e.preventDefault();  
+
+  let platform=$("savePlatform").value;  
+  let amount=+$("saveAmount").value||0;  
+  let note=$("saveNote").value;  
+
+  if(amount<=0)
+    return alert("Ingresa un monto válido.");  
+
+  state.balances[platform]=(state.balances[platform]||0)+amount;  
+
+  state.ops.push({  
+    id:Date.now(),  
+    type:"aporte",  
+    date:$("saveDate").value,  
+    platform,  
+    amount,  
+    note  
+  });  
+
+  save();  
+
+  e.target.reset();  
+  $("saveDate").value=new Date().toISOString().slice(0,10);  
+
+  alert(`Ahorro de ${fmt(amount)} agregado correctamente.`);  
+
+  show("inicio",document.querySelector("nav button"));  
+}  
+
+function render(){  
+  let c=capital();  
+  let p=profit();  
+  let g=nextGoal();  
+  let progress=Math.min(1,c/g);  
+
+  $("capital").textContent=fmt(c);  
+  $("profit").textContent=fmt(p);  
+  $("profit").className="big "+(p>=0?"green":"red");  
+  $("roi").textContent=pct(p/state.initial);  
+
+  let operationCount=state.ops.filter(o=>o.type!=="aporte").length;  
+  $("ops").textContent=operationCount;  
+
+  $("goal").textContent=fmt(g);  
+  $("goalPct").textContent=pct(progress);  
+  $("bar").style.width=(progress*100)+"%";  
+  $("goalLeft").textContent=c>=g?"¡Meta alcanzada!":"Faltan "+fmt(g-c);  
+  $("goalText").textContent=c>=g?"Alcanzada":"En proceso";  
+
+  $("platforms").innerHTML=PLAT.map(x=>  
+    `<div class="platform"><span>${x}</span><b>${fmt(state.balances[x]||0)}</b></div>`  
+  ).join("");  
+
+  $("balanceList").innerHTML=PLAT.map(x=>{  
+    let calc=state.balances[x]||0;  
+    let real=state.real[x];  
+    let d=real===""||real==null?null:real-calc;  
+
+    return `<div class="platform">  
+      <div>  
+        <b>${x}</b>  
+        <div class="small">Calculado ${fmt(calc)}${d==null?"":" · Real "+fmt(real)}</div>  
+      </div>  
+      <b class="${d==null?"":Math.abs(d)<1?"green":"red"}">${d==null?"—":fmt(d)}</b>  
+    </div>`;  
+  }).join("");  
+
+  $("verify").innerHTML=PLAT.map(x=>  
+    `<div style="margin-top:10px">  
+      <label>${x}</label>  
+      <input type="number" step="0.01" value="${state.real[x]??""}" placeholder="${Number(state.balances[x]||0).toFixed(2)}" onchange="setReal('${x}',this.value)">  
+    </div>`  
+  ).join("");  
+
+  let rows=state.ops.slice(-8).reverse();  
+
+  $("recent").innerHTML=rows.length?  
+    `<div class="scroll">  
+      <table>  
+        <tr><th>Tipo</th><th>Detalle</th><th>Monto</th></tr>  
+        ${rows.map(o=>{  
+          if(o.type==="aporte"){  
+            return `<tr>  
+              <td><span class="badge bg">Ahorro</span></td>  
+              <td>${o.platform}</td>  
+              <td class="green"><b>+${fmt(o.amount)}</b></td>  
+            </tr>`;  
+          }  
+
+          return `<tr>  
+            <td><span class="badge">Arbitraje</span></td>  
+            <td>${o.from} → ${o.to}</td>  
+            <td class="${o.gain>=0?"green":"red"}"><b>${fmt(o.gain)}</b></td>  
+          </tr>`;  
+        }).join("")}  
+      </table>  
+    </div>`  
+    :  
+    `<div class="empty">Todavía no hay operaciones.</div>`;  
+
+  $("history").innerHTML=state.ops.length?  
+    `<table>  
+      <tr>  
+        <th>Fecha</th>  
+        <th>Tipo</th>  
+        <th>Detalle</th>  
+        <th>Monto</th>  
+        <th>Ganancia</th>  
+        <th></th>  
+      </tr>  
+
+      ${state.ops.slice().reverse().map(o=>{  
+
+        if(o.type==="aporte"){  
+          return `<tr>  
+            <td>${o.date}</td>  
+            <td><span class="badge bg">Ahorro</span></td>  
+            <td>${o.platform}</td>  
+            <td class="green"><b>+${fmt(o.amount)}</b></td>  
+            <td>—</td>  
+            <td><button class="secondary" onclick="delOp(${o.id})">×</button></td>  
+          </tr>`;  
+        }  
+
+        return `<tr>  
+          <td>${o.date}</td>  
+          <td><span class="badge">Arbitraje</span></td>  
+          <td>${o.from} → ${o.to}</td>  
+          <td>${fmt(o.arrive)}</td>  
+          <td class="${o.gain>=0?"green":"red"}">${fmt(o.gain)}</td>  
+          <td><button class="secondary" onclick="delOp(${o.id})">×</button></td>  
+        </tr>`;  
+
+      }).join("")}  
+
+    </table>`  
+    :  
+    `<div class="empty">No hay operaciones registradas.</div>`;  
+
+  drawChart();  
+}  
+
+function setReal(x,v){  
+  state.real[x]=v===""?"":+v;  
+  save();  
+  render();  
+}  
+
+function delOp(id){  
+  let o=state.ops.find(x=>x.id===id);  
+
+  if(!o)
+    return;  
+
+  if(!confirm("¿Eliminar este registro y revertir sus saldos?"))
+    return;  
+
+  if(o.type==="aporte"){  
+    state.balances[o.platform]=(state.balances[o.platform]||0)-o.amount;  
+  }else{  
+    state.balances[o.from]=(state.balances[o.from]||0)+o.sale+o.fee;  
+    state.balances[o.to]=(state.balances[o.to]||0)-o.arrive;  
+  }  
+
+  state.ops=state.ops.filter(x=>x.id!==id);  
+
+  save();  
+  render();  
+}  
+
+function exportJSON(){  
+  let blob=new Blob(  
+    [JSON.stringify(state,null,2)],  
+    {type:"application/json"}  
+  );  
+
+  let a=document.createElement("a");  
+  a.href=URL.createObjectURL(blob);  
+  a.download="respaldo_arbitraje_ahorro.json";  
+  a.click();  
+}  
+
+function importJSON(e){  
+  let f=e.target.files[0];  
+
+  if(!f)
+    return;  
+
+  let r=new FileReader();  
+
+  r.onload=()=>{  
+    try{  
+      let x=JSON.parse(r.result);  
+
+      if(!x.balances||!x.ops)
+        throw 0;  
+
+      state=x;  
+      save();  
+      render();  
+
+      alert("Respaldo importado.");  
+    }catch{  
+      alert("Archivo de respaldo no válido.");  
+    }  
+  };  
+
+  r.readAsText(f);  
+}  
+
+function drawChart(){  
+  let cv=$("chart");  
+  let ctx=cv.getContext("2d");  
+  let w=cv.clientWidth;  
+  let h=cv.height;  
+  let dpr=devicePixelRatio||1;  
+
+  cv.width=w*dpr;  
+  cv.height=h*dpr;  
+
+  ctx.scale(dpr,dpr);  
+  ctx.clearRect(0,0,w,h);  
+
+  let vals=[state.initial];  
+
+  state.ops  
+    .filter(o=>o.type!=="aporte")  
+    .forEach(o=>vals.push(vals.at(-1)+o.gain));  
+
+  let min=Math.min(...vals);  
+  let max=Math.max(...vals);  
+  let range=max-min||1;  
+
+  ctx.font="11px system-ui";  
+  ctx.fillStyle="#708096";  
+  ctx.fillText(fmt(max),4,14);  
+  ctx.fillText(fmt(min),4,h-5);  
+
+  ctx.strokeStyle="#dce4ee";  
+  ctx.beginPath();  
+  ctx.moveTo(55,18);  
+  ctx.lineTo(w-8,18);  
+  ctx.moveTo(55,h-18);  
+  ctx.lineTo(w-8,h-18);  
+  ctx.stroke();  
+
+  ctx.strokeStyle="#3678e8";  
+  ctx.lineWidth=3;  
+  ctx.beginPath();  
+
+  vals.forEach((v,i)=>{  
+    let x=55+(i/(vals.length-1||1))*(w-65);  
+    let y=18+(max-v)/range*(h-36);  
+
+    i?ctx.lineTo(x,y):ctx.moveTo(x,y);  
+  });  
+
+  ctx.stroke();  
+}  
+
+async function installApp(){  
+  if(deferredPrompt){  
+    deferredPrompt.prompt();  
+
+    try{
+      await deferredPrompt.userChoice;
+    }catch(e){}  
+
+    deferredPrompt=null;  
+  }else{  
+    alert("Si no aparece el instalador: en Chrome abre ⋮ y busca “Instalar aplicación” o “Añadir a pantalla de inicio”.");  
+  }  
+}  
+
+setup();  
+
+// IMPORTANTE: el nombre del archivo es ws.js
+if("serviceWorker"in navigator){  
+  window.addEventListener("load",()=>{  
+    navigator.serviceWorker  
+      .register("./ws.js",{scope:"./"})  
+      .catch(err=>console.error("Service Worker:",err));  
+  });  
+}  
+
+</script>  
+</body>  
+</html>
